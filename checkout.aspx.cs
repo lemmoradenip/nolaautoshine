@@ -9,10 +9,14 @@ public partial class Checkout : System.Web.UI.Page
 {
     Payment payment = new Payment();
     DBUtil dbutil = new DBUtil();
-    string customerid;
+
     protected void Page_Load(object sender, EventArgs e)
     {
+        string customerid;
         customerid = Request.QueryString["id"];
+        lblcustomerid.Text = customerid;
+
+
         //Bind header data
         BindInvoiceHeader();
         //Bind selected data
@@ -49,18 +53,29 @@ public partial class Checkout : System.Web.UI.Page
 
     public void BindSelectServicesData()
     {
-        string qry = String.Format("SELECT * FROM SELECTEDSERVICES_V WHERE  Customerid ={0} ORDER BY Services", customerid);
-        DataTable dt = dbutil.GetData(qry, "BindData()");
-        gv_services.DataSource = dt;
-        gv_services.DataBind();
+        try
+        {
+
+            string qry = string.Format("SELECT * FROM SELECTEDSERVICES_V WHERE ispaid is null and Customerid={0}  ORDER BY Services", lblcustomerid.Text.ToString());
+            DataTable dt = dbutil.GetData(qry, "BindSelectServicesData()");
+            gv_services.DataSource = dt;
+            gv_services.DataBind();
+            lblerror.Text = string.Empty;
+            div_error.Visible = false;
+        }
+        catch (Exception ex)
+        {
+            lblerror.Text = ex.Message.ToString();
+            div_error.Visible = true;
+        }
     }
     public void BindInvoiceHeader()
     {
         try
         {
             string qry = String.Format("SELECT top 1  invoiceno,invoicedate,billtocustomer,billtoaddr,servicedate,vehicletype,carmake,currency,invoicenetamount "
-            + " FROM Checkout_V WHERE  Customerid ={0} ", this.customerid);
-            DataTable dt = dbutil.GetData(qry, "BindData()");
+            + " FROM Checkout_V WHERE  Customerid ={0} and ispaid <> 1", lblcustomerid.Text.ToString());
+            DataTable dt = dbutil.GetData(qry, "BindInvoiceHeader()");
             if (dt.Rows.Count > 0)
             {
                 //column index
@@ -133,6 +148,9 @@ public partial class Checkout : System.Web.UI.Page
     {
         try
         {
+
+
+
             if (ddlpaymentmode.SelectedValue.ToString() == "CHECK")
             {
                 string custreservationid = string.Empty;//gv_reservations.Rows[i].Cells[0].Text.ToString();
@@ -141,11 +159,22 @@ public partial class Checkout : System.Web.UI.Page
 
             else //if cash amount received is required else card is being swiped by preconfigured POS, which means it's auto debit to bank account given.
             {
+
+                if (ddlpaymentmode.SelectedValue.ToString() == "CASH" && txtAmountReceived.Text.ToString().Trim() == string.Empty)
+                { throw new Exception("Please put received amount"); }
+
+                //validate for negative balance
+                if (ddlpaymentmode.SelectedValue.ToString() == "CASH" && txtAmountReceived.Text.ToString().Trim() != string.Empty)
+                {
+                    if (Convert.ToDecimal(lblchanged.Text.ToString()) < 0)
+                    { throw new Exception(string.Format("Changed must not be negative( {0}).", String.Format("{0:#,##0.##}", lblchanged.Text.ToString()))); }
+                }
+                //no worries not to supply all parameter for they have default null values
                 payment.Amount = Convert.ToDecimal(txtAmountReceived.Text.ToString());
                 payment.PaymentMethod = ddlpaymentmode.SelectedValue.ToString();
                 payment.Username = "[session]";
                 payment.PaymentSource = string.Format("CASHIER#{0}", "01");// just concatenate which CASHIER No. example CASHIER#10
-                int affectedrecords = payment.MakePayment(customerid, lblinvoice.Text.ToString());
+                int affectedrecords = payment.MakePayment(lblcustomerid.Text.ToString(), lblinvoice.Text.ToString());
                 if (affectedrecords > 0)
                 {
                     //print invoice via crystall report on _self , that means posted transactions

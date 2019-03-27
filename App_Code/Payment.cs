@@ -142,7 +142,8 @@ public class Payment
     /// </summary>
     /// <param name="customerid"></param>
     /// <param name="invoicenumber"></param>
-    /// <returns></returns>
+    /// <returns>int</returns>
+ 
     public int MakePayment(string customerid, string invoicenumber)
     {
         SqlCommand sqlcmd = new SqlCommand("usp_MakePayment");
@@ -160,7 +161,7 @@ public class Payment
         sqlcmd.Parameters.AddWithValue("@cvc", this.cvc);
         sqlcmd.Parameters.AddWithValue("@ip", HttpContext.Current.Request.UserHostAddress.ToString());//get machine ip for auditing
         sqlcmd.Parameters.AddWithValue("@invoicenumber", invoicenumber);
-        sqlcmd.Parameters.AddWithValue("@checkband", this.checkbank);
+        sqlcmd.Parameters.AddWithValue("@checkbank", this.checkbank);
         sqlcmd.Parameters.AddWithValue("@checkseries", this.checkseries);
         return dbutil.ExecuteNonQuery(sqlcmd);
 

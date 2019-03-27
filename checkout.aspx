@@ -7,7 +7,7 @@
     <div class="content centercontent">
         <div class="form">
             <div class="bread-crumbs">
-                <span>Dashboard \ Reservations \<b> Checkout</b></span>
+                <span>Dashboard \ Reservations \<b> Checkout</b>&nbsp;(Customer#  <asp:Label ID="lblcustomerid" runat="server"></asp:Label>)</span>
             </div>
             <div class="error-section" id="div_error" runat="server" visible="false">
                 <asp:Label ID="lblerror" runat="server">cc</asp:Label>
@@ -136,7 +136,9 @@
         </div>
         <asp:SqlDataSource ID="sds_services" runat="server" ConnectionString="<%$ ConnectionStrings:DBConstring %>" SelectCommand="SELECT * FROM SELECTEDSERVICES_V  ORDER BY Services"></asp:SqlDataSource>
         <asp:SqlDataSource ID="sds_time" runat="server" ConnectionString="<%$ ConnectionStrings:DBConstring %>" SelectCommand="SELECT * FROM SCHEDULEDtime ORDER BY id"></asp:SqlDataSource>
+        <asp:HiddenField ID="hf_customerid" runat="server" />
 
+      
     </div>
 </asp:Content>
 
