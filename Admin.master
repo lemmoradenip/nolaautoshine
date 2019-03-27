@@ -1,0 +1,91 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Admin.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+<%--<meta name="viewport" content="width=device-width, initial-scale=1">--%>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<%--<%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls"
+    TagPrefix="BDP" %>--%>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>CarWash
+    </title>
+   
+    <link rel="stylesheet" type="text/css" href="css/slider.css" />
+      <%--<link rel="stylesheet" type="text/css" href="css/master-style.css" />--%>
+     <link rel="stylesheet" type="text/css" href="css/dashboard.css" />
+    <%-- <asp:ContentPlaceHolder ID="website" runat="server">
+    </asp:ContentPlaceHolder>--%>
+</head>
+<body>
+    <form id="myForm" runat="server">
+        <div id="content">
+            <div id="header">
+                <a href="#" class="logo">
+                    <img src="images/logo.jpg" alt="" width="195" height="80" /></a>
+                <ul id="menu">
+                    <li><a href="Index.aspx">LOGOUT</a></li>
+                </ul>
+            </div>
+        </div>
+
+       <%-- <div class="row">
+            <div class="leftcolumn">
+                <br />
+                <asp:TreeView ID="TreeView1" runat="server" DataSourceID="SiteMapDataSource1" Width="100%" Style="position: static; height: 77%; color: black; margin-left: 0px;" Font-Names="Verdana" ForeColor="Black" Font-Size="12pt" ExpandDepth="1" ImageSet="Simple" PopulateNodesFromClient="False">
+                    <NodeStyle Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" HorizontalPadding="5px" NodeSpacing="0px" VerticalPadding="0px" />
+                    <ParentNodeStyle Font-Names="Verdana" Font-Size="12px" Font-Bold="False" />
+                    <SelectedNodeStyle Font-Names="Verdana" Font-Size="12px" Font-Bold="true" Font-Underline="false" ForeColor="Black" HorizontalPadding="0px" VerticalPadding="0px" />
+                    <RootNodeStyle Font-Bold="True" Font-Names="Verdana" ForeColor="black" Font-Size="12px" />
+                    <LeafNodeStyle Font-Size="12px" Font-Names="verdana" ForeColor="black" />
+                </asp:TreeView>
+                <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+            </div>
+            <div class="rightcolumn">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>--%>
+
+         <table class="auto-style5">
+                <tr>
+                    <td style="position: fixed; top: 70px;">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+                     
+                        <div runat="server" style="overflow-y: auto;">
+                            &nbsp;
+                            &nbsp;
+                            <asp:TreeView ID="TreeView1" runat="server" DataSourceID="SiteMapDataSource1" Width="230px" Style="position: static; height: 77%; color: white; margin-left: 0px;" Font-Names="Verdana" ForeColor="White" Font-Size="12pt" ExpandDepth="1" ImageSet="Simple" PopulateNodesFromClient="False">
+                                <NodeStyle Font-Names="Verdana" Font-Size="8pt" ForeColor="white" HorizontalPadding="5px" NodeSpacing="0px" VerticalPadding="0px" />
+                                <ParentNodeStyle Font-Names="Verdana" Font-Size="12px" Font-Bold="False"  ForeColor="White"/>
+                                <SelectedNodeStyle Font-Names="Verdana" Font-Size="12px" Font-Bold="true" Font-Underline="false" ForeColor="white" HorizontalPadding="0px" VerticalPadding="0px" />
+                                <RootNodeStyle Font-Bold="True" Font-Names="Verdana" ForeColor="white" Font-Size="12px" />
+                                <LeafNodeStyle Font-Size="12px" Font-Names="verdana" ForeColor="white" />
+                            </asp:TreeView>    <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+                        </div>
+
+                    </td>
+                    <td style="border-style: none none none solid;background-color:#2D2E31; border-right-width: thin;width:inherit; border-left-width: thin; border-color: #808080; height: 100%; left: 240px; position: fixed; top: 80px;">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </td>
+                </tr>
+                <tr>
+                    <%-- <td class="auto-style4" colspan="2"></td>--%>
+                </tr>
+            </table>
+
+
+    </form>
+</body>
+
+<script type="text/javascript">
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+</script>
+<%--<script type="text/javascript" src="js/slider.js"></script>
+<script type="text/javascript" src="js/validation.js"></script>--%>
+</html>

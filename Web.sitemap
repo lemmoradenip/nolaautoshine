@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="dashboard.aspx" title="Modules"  description="">
+    <siteMapNode url="reservations.aspx" title="Reservations"  description="" />
+    <siteMapNode url="Employees.aspx" title="Employees"  description="" />
+    <!--<siteMapNode  title="Customers"  description="" />
+    <siteMapNode  title="Services"  description="" />
+    --><!--<siteMapNode title="Financial Management"  description="" >--><!--
+      <siteMapNode url="payments.aspx" title="Payments(POS)"  description="" />
+      --><!--<siteMapNode  title="Financial Reports"  description="" />--><!--
+    --><!--</siteMapNode>-->
+
+
+ <siteMapNode title="Inventory"  description="" >
+      <siteMapNode url="Inventory.aspx" title="Items"  description="" />
+        <siteMapNode  url="Vendor.aspx" title="Vendor"  description="" />
+    </siteMapNode>
+    <!--<siteMapNode title="Human Resource"  description="" >
+      <siteMapNode url="Employess.aspx" title="Employees/Staff"  description="" />
+      <siteMapNode  title="Payroll"  description="" />
+      <siteMapNode  title="Attendance IN/OUT"  description="" />
+    </siteMapNode>
+    <siteMapNode  title="Other Settings"  description="" />-->
+  </siteMapNode>
+</siteMap>

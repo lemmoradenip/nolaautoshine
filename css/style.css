@@ -1,0 +1,12 @@
+﻿* {
+margin:0px;
+padding:0px;
+}
+.hidden {
+display:none;
+}
+.error-field {
+color:#ff0000;
+padding: 10px;
+width:100%;
+}

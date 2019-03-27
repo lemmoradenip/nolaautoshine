@@ -1,0 +1,328 @@
+﻿* {
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial;
+    box-sizing: border-box
+}
+
+body {
+    font-family: Verdana, sans-serif;
+    margin: 0
+}
+
+img {
+    border: 0px
+}
+
+
+
+.button {
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-family: Arial;
+    border-radius: 5px;
+}
+
+.table {
+    margin-top: 20px;
+}
+
+#services {
+    margin: 10px;
+    padding: 25px 0 55px 0;
+}
+
+    #services .table {
+        margin-top: auto;
+        padding: 0 0 55px 0;
+        width: 50%;
+    }
+
+        #services .table th {
+            color: #bece6e;
+            height: 30px;
+            text-transform: uppercase;
+        }
+
+        #services .table tr {
+            /*display: block;
+        float: left;*/
+            font-family: Tahoma;
+            font-size: 14px;
+            color: #AFB8D3;
+            line-height: 18px;
+            width: 100%;
+            margin: 0 10px 0 0;
+            border: 1px solid #1E2027
+        }
+
+        #services .table td {
+            padding: 10px 0 10px 0;
+            margin: 0 0 13px 0;
+            border-bottom: 1px solid #1E2027;
+            text-align: center;
+        }
+
+
+
+html {
+    width: 100%;
+    height: 100%;
+    background-color: #101115;
+    background-image: url(images/bg.gif);
+    background-position: top left;
+    background-repeat: repeat-x;
+    font-family: Tahoma Verdana;
+}
+
+body {
+    width: 100%;
+    background-image: url(images/bot_bg.gif);
+    background-position: bottom left;
+    background-repeat: repeat-x;
+    margin: 0px;
+    padding: 0px;
+    font-family: Tahoma Verdana;
+    overflow-y: no-display;
+}
+
+#header {
+    padding: 0 0 80px 23px;
+    /*background-image: url(images/bg_top.png);*/
+    background-image: url(../images/bg_header.jpg);
+    background-repeat: repeat;
+    /*background-position: bottom left;*/
+    /*background-color: #232428;*/
+    width: 100%;
+}
+
+#content {
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+
+.content {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0px;
+    color: white;
+    overflow: no-display;
+}
+
+    .content .centercontent {
+        width: 80%;
+        margin: 0 auto;
+        padding: 0px;
+        color: white;
+    }
+
+.row {
+    content: "";
+    /*display: table;*/
+    clear: both;
+    display: inline-block;
+}
+
+
+.leftcolumn {
+    float: left;
+    width: 15%;
+    background-color: #ffffff;
+    position: static;
+    height: 100%;
+}
+
+.rightcolumn {
+    float: left;
+    width: 75%;
+    background-color: #232428;
+    /*padding-left: 20px;*/
+}
+
+.bread-crumbs {
+    width: auto;
+    margin: 0 auto;
+    padding: 2%;
+    color: lightgray;
+    background-color: #292A2D;
+}
+
+.error-section {
+    width: auto;
+    margin: 10px 0 0 0;
+    padding: 2%;
+    color: #823651;
+    background-color: #ECC7C7;
+    border-radius: 5px;
+    /*display: none;*/
+}
+
+.logo {
+    float: left
+}
+
+#menu {
+    padding: 30px 150px 0 90px;
+    float: right
+}
+
+    #menu li {
+        list-style-type: none;
+        display: inline
+    }
+
+    #menu a {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 13px;
+        color: #9DA2B8;
+        text-transform: uppercase;
+        text-decoration: none;
+        margin: 0 11px;
+        padding: 0 0 2px 0;
+        display: block;
+        float: left;
+    }
+
+        #menu a:visited {
+            color: #9DA2B8;
+            border: 0px;
+        }
+
+        #menu #active, #menu a:hover {
+            color: #FFFFFF;
+            border-bottom: 2px solid #C00014;
+        }
+
+#form {
+    width: auto;
+    margin: 5px auto;
+    padding: 2%;
+    color: lightgray;
+    background-color: #292A2D;
+}
+
+#form-login {
+    width: auto;
+    margin: 5px auto;
+    padding: 2%;
+    color: lightgray;
+    background-color: #292A2D;
+}
+
+
+#form h6 {
+    color: #C00014;
+}
+
+.form-header {
+    font-family: Arial;
+}
+    /*.form-header .center-align {
+        width: 80%;
+        margin: 0 auto;
+        margin-left:50%;
+        padding: 0px;
+        color: white;
+        text-align: center;
+    }*/
+
+    .form-header td {
+        padding: 0 20px 10px 0;
+    }
+
+        .form-header td #btn {
+            text-align: right;
+        }
+
+    .form-header input {
+        width: 300px;
+        padding: 7px;
+        /*text-transform: uppercase;*/
+        border-radius: 5px;
+    }
+
+.form-footer {
+    /*float: right;*/
+    background-color: #292A2D;
+    text-align: right;
+    margin-bottom: 0px;
+    padding: 20px;
+    /*position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #515151;
+    color: white;
+    text-align: center;*/
+}
+
+.footer {
+    /*float: right;*/
+    /*background-color: #292A2D;
+    text-align: right;
+    margin-bottom:0px;
+    padding:20px;*/
+    /*position: fixed;*/
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 5%;
+    background-color: #515151;
+    color: white;
+    text-align: center;
+    vertical-align: central;
+}
+
+.hidden {
+    display: none;
+}
+/*style for front page*/
+.aboutus {
+    width: 100%;
+    background-color:red;
+}
+/*Front page style*/
+.content .services
+{
+    padding:10px 100px;
+   font-family:Arial 'Arial Rounded MT';
+   background-color:transparent;
+   letter-spacing:2px;
+   line-height:1.7em;
+   padding-top:50px;
+}
+.content .services h1 {
+   
+    margin-bottom:10px;
+    padding: 0px 5px 30px 5px;
+    text-align:left;
+    color:lightgray;
+    margin-bottom:50px;
+}
+    .content .services .leftcolumn {
+        background-color: #101115; /*idk why i put this*/
+        width: 50%;
+        padding: 0px 50px;
+        text-align: justify;
+        text-justify: inter-word;
+        color: #92A1AC;
+    }
+    .content .services .rightcolumn {
+        background-color: #101115;
+        /*background-color:red;*/
+        width: 50%;
+        padding: 0px 50px 0px 50px;
+    }
+    .content .services .rightcolumn  img{
+        border-radius:5px;
+    }
+    .content .services #promo-banner {
+        background-color: #141519;
+        /*padding: 100px 0px;*/
+        text-align: center;
+        /*margin-left:0px;
+        margin-right:0px;*/
+    }
+

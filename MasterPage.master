@@ -1,0 +1,46 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<%--<%@ Register Assembly="BasicFrame.WebControls.BasicDatePicker" Namespace="BasicFrame.WebControls"
+    TagPrefix="BDP" %>--%>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>CarWash
+    </title>
+    <link rel="stylesheet" type="text/css" href="css/master-style.css" />
+    <link rel="stylesheet" type="text/css" href="css/slider.css" />
+   <link rel="stylesheet" type="text/css" href="css/login.less" />
+    <%-- <asp:ContentPlaceHolder ID="website" runat="server">
+    </asp:ContentPlaceHolder>--%>
+</head>
+<body>
+    <form id="myForm" runat="server">
+        <div id="content">
+            <div id="header">
+                <a href="#" class="logo">
+                    <img src="images/logo.jpg" alt="" width="195" height="80" /></a>
+                <ul id="menu">
+                    <li><a href="Index.aspx" id="active">HOME</a></li>
+                    <li><a href="Appointment.aspx">MAKE APPOINTMENT</a></li>
+                       <li><a href="Appointment.aspx">ABOUT US</a></li>
+                    <li><a href="login.aspx">LOGIN</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+            <div class="footer">
+                <!-- VLinks -->
+                <p>
+                    All Rights Reserved 2019
+                </p>
+            </div>
+    </form>
+</body>
+    <script type="text/javascript" src="js/slider.js"></script>
+      <script type="text/javascript" src="js/validation.js"></script>
+</html>
