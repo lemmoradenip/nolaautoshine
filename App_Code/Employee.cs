@@ -202,4 +202,12 @@ public class Employee
         return returnval;
     }
 
+    public int GeneratePayrollTemporaryTransactions(string year, string month)
+    {
+        SqlCommand sqlcmd = new SqlCommand("usp_GeneratePayrollTransaction");
+        sqlcmd.CommandType = CommandType.StoredProcedure;
+        sqlcmd.Parameters.AddWithValue("@month", month);//d=delete, i/u is null     
+        sqlcmd.Parameters.AddWithValue("@year", year);
+        return dbutil.ExecuteNonQuery(sqlcmd);
+    }
 }

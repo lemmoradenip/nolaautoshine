@@ -10,8 +10,15 @@ public partial class Accounting : System.Web.UI.Page
     DBUtil dbutil = new DBUtil();
     Employee employeemodel = new Employee();
     Payment payment = new Payment();
+    Cryptor validate = new Cryptor();
     protected void Page_Load(object sender, EventArgs e)
     {
+        string usernamesession = (string)(Session["username"]);
+        if (validate.ValidateAccessLevel(usernamesession) != 1)
+        {
+            Response.Write("<script>confirm('Access Denied! Go back to previous page!   ');</script>");
+            Response.Redirect("~/Reservations.aspx");
+        }
         payment.Month = ddlpayschedule.SelectedValue.ToString();
         BindPayrollTransactions();
         BindInventoryTransactions();
@@ -31,16 +38,7 @@ public partial class Accounting : System.Web.UI.Page
         {
             e.Row.Attributes.Add("onmouseover", "this.originalstyle=this.style.backgroundColor;this.style.backgroundColor='#76777a'");
             e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor=this.originalstyle;");
-            int cID = 0, cEmployeeId = 1, cName = 2, cEmp_Job = 3, cPayType = 4, cRate = 5, cWorkedHrs = 6, cOTRate = 7, cOTcWorkedHrs = 8, cTotSalary = 9, cBtnSave = 10, cBtnPrint = 11;
-
-
-            //if (e.Row.Cells[cID].Text.ToString() != "0")
-            //{
-            //    LinkButton lnkpay = (LinkButton)e.Row.FindControl("lnkbtnsave");
-            //    lnkpay.Text = "UPDATE";
-            //    lnkpay.ForeColor = System.Drawing.Color.OrangeRed;
-
-            //}
+           
 
         }
     }
@@ -109,6 +107,28 @@ public partial class Accounting : System.Web.UI.Page
         {
             lblerror.Text = ex.Message.ToString();
             div_error.Visible = true;
+        }
+    }
+
+    protected void gvpayments_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if ((e.Row.RowType == DataControlRowType.DataRow))
+        {
+            e.Row.Attributes.Add("onmouseover", "this.originalstyle=this.style.backgroundColor;this.style.backgroundColor='#76777a'");
+            e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor=this.originalstyle;");
+
+
+        }
+    }
+
+    protected void gv_inventory_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if ((e.Row.RowType == DataControlRowType.DataRow))
+        {
+            e.Row.Attributes.Add("onmouseover", "this.originalstyle=this.style.backgroundColor;this.style.backgroundColor='#76777a'");
+            e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor=this.originalstyle;");
+
+
         }
     }
 }

@@ -26,11 +26,11 @@
                     <tr>
                         <td>MONTH</td>
                         <td>
-                            <asp:DropDownList ID="ddlpayschedule" runat="server">
+                            <asp:DropDownList ID="ddlpayschedule" OnSelectedIndexChanged="ddlpayschedule_SelectedIndexChanged" runat="server" AutoPostBack="true">
                                 <asp:ListItem Value="JANUARY" Text="JANUARY"></asp:ListItem>
                                 <asp:ListItem Value="FEBRUARY" Text="FEBRUARY"></asp:ListItem>
                                 <asp:ListItem Value="MARCH" Text="MARCH"></asp:ListItem>
-                                <asp:ListItem Value="APRIL" Selected="True" Text="APRIL"></asp:ListItem>
+                                <asp:ListItem Value="APRIL"  Text="APRIL"></asp:ListItem>
                                 <asp:ListItem Value="MAY" Text="MAY"></asp:ListItem>
                                 <asp:ListItem Value="JUNE" Text="JUNE"></asp:ListItem>
                                 <asp:ListItem Value="JULY" Text="JULY"></asp:ListItem>
@@ -57,24 +57,24 @@
                             <%--<asp:BoundField DataField="DepartmentName" HeaderText="DEPARTMENT" ItemStyle-Width="5%" HeaderStyle-Width="5%" />--%>
                             <asp:BoundField DataField="Emp_Job" HeaderText="JOB" ItemStyle-Width="10%" HeaderStyle-Width="10%" />
                             <asp:BoundField DataField="Paytype" HeaderText="TYPE" ItemStyle-Width="5%" HeaderStyle-Width="5%" />
-                            <asp:BoundField DataField="Rate" HeaderText="RATE" ItemStyle-Width="10%" HeaderStyle-Width="10%" />
+                            <asp:BoundField DataField="Rate" HeaderText="RATE" DataFormatString="{0:N}" ItemStyle-Width="10%" HeaderStyle-Width="10%" />
                             <asp:TemplateField HeaderText="WorkedHrs">
                                 <ItemTemplate>
-                                    <asp:TextBox ID="txtWorkedHrs" runat="server" placeholder="0.00" Width="99%" Text='<%# Eval("workedhrs") %>' Height="100%"></asp:TextBox>
+                                    <asp:TextBox ID="txtWorkedHrs" runat="server" BackColor="#234D6B" ForeColor="Yellow" BorderColor="Transparent" placeholder="0.00" Width="99%" Text='<%# Eval("workedhrs") %>' Height="100%"></asp:TextBox>
                                 </ItemTemplate>
                                 <HeaderStyle Width="10%" />
                                 <ItemStyle HorizontalAlign="Center" Width="10%" />
                             </asp:TemplateField>
                             <%--<asp:BoundField DataField="totalregular" HeaderText="TOTAL" ItemStyle-Width="10%" HeaderStyle-Width="10%" />--%>
-                            <asp:BoundField DataField="OTRATE" HeaderText="OT-RATE" ItemStyle-Width="10%" HeaderStyle-Width="10%" />
+                            <asp:BoundField DataField="OTRATE" HeaderText="OT-RATE" DataFormatString="{0:N}" ItemStyle-Width="10%" HeaderStyle-Width="10%" />
                             <asp:TemplateField HeaderText="OT-HRS">
                                 <ItemTemplate>
-                                    <asp:TextBox ID="txtOTHrs" runat="server" placeholder="0.00" Text='<%# Eval("OTHRS") %>' Width="99%" Height="99%"></asp:TextBox>
+                                    <asp:TextBox ID="txtOTHrs" runat="server" BackColor="#234D6B" placeholder="0.00"   ForeColor="Yellow"  BorderColor="Transparent" Text='<%# Eval("OTHRS") %>' Width="99%" Height="99%"></asp:TextBox>
                                 </ItemTemplate>
                                 <HeaderStyle Width="10%" />
-                                <ItemStyle HorizontalAlign="Center" Width="10%" />
+                                <ItemStyle HorizontalAlign="Center" Width="10%"  VerticalAlign="Middle"/>
                             </asp:TemplateField>
-                            <asp:BoundField DataField="TOTALSALARY" HeaderText="TOTAL SALARY" ItemStyle-Width="10%" HeaderStyle-Width="10%" />
+                            <asp:BoundField DataField="TOTALSALARY" DataFormatString="{0:N}" HeaderText="TOTAL SALARY" ItemStyle-Width="10%" HeaderStyle-Width="10%" />
                             <asp:TemplateField>
                                 <ItemTemplate>
                                     <asp:LinkButton ID="lnkbtnsave" CommandArgument="<%# Container.DataItemIndex %>" CommandName="Save" ForeColor="LightGreen" runat="server" Text="SAVE"></asp:LinkButton>
@@ -84,7 +84,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="SLIP">
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="lnktbtnprint" runat="server" ForeColor="Yellow" Text="PRINT"></asp:LinkButton>
+                                    <asp:LinkButton ID="lnktbtnprint" runat="server" CommandArgument="<%# Container.DataItemIndex %>" CommandName="Print" ForeColor="Yellow" Text="PRINT"></asp:LinkButton>
                                 </ItemTemplate>
                                 <HeaderStyle Width="5%" />
                                 <ItemStyle HorizontalAlign="Center" Width="5%" />
