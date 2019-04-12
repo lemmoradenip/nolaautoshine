@@ -101,7 +101,23 @@
                         <asp:Label ID="lblchanged"  runat="server">--</asp:Label>
                     </td>
                 </tr>
+                 <tr id="trcheck" runat="server" visible="false">
+                    <td>Bank
+                    </td>
+                    <td>
+                      <asp:TextBox ID="txtbank" runat="server"  placeholder="Bank Name"></asp:TextBox>
+                    </td>
+                    <td>Check Number Series;
+                    </td>
+                  <td>
+                      <asp:TextBox ID="txtchecknoseries" runat="server" placeholder="ABC123456"></asp:TextBox>
+                    </td>
+                </tr>
             </table>
+              <div class="form-footer">
+            <asp:Button ID="btnpay" CssClass="button" runat="server" OnClick="btnpay_Click" Text="PAY" />
+            <%--<input type="button" class="button" title="SUBMIT" value="SUBMIT" />--%>
+        </div>
         </div>
 
         <div id="services">
@@ -116,7 +132,8 @@
                         <ItemStyle HorizontalAlign="Center" Width="5%" />
                     </asp:TemplateField>
                     <asp:BoundField DataField="Services" HeaderText="Services" />
-                    <asp:BoundField DataField="Description" HeaderText="Description" />
+                    <asp:BoundField DataField="cartype" HeaderText="Type" />
+                    
                     <asp:BoundField DataField="ServiceCharges" HeaderText="Cost" />
                     <asp:BoundField DataField="Isvoid" HeaderText="Void" />
                     <asp:TemplateField HeaderText="">
@@ -130,10 +147,7 @@
             </asp:GridView>
 
         </div>
-        <div class="form-footer">
-            <asp:Button ID="btnpay" CssClass="button" runat="server" OnClick="btnpay_Click" Text="PAY" />
-            <%--<input type="button" class="button" title="SUBMIT" value="SUBMIT" />--%>
-        </div>
+      
         <asp:SqlDataSource ID="sds_services" runat="server" ConnectionString="<%$ ConnectionStrings:DBConstring %>" SelectCommand="SELECT * FROM SELECTEDSERVICES_V  ORDER BY Services"></asp:SqlDataSource>
         <asp:SqlDataSource ID="sds_time" runat="server" ConnectionString="<%$ ConnectionStrings:DBConstring %>" SelectCommand="SELECT * FROM SCHEDULEDtime ORDER BY id"></asp:SqlDataSource>
         <asp:HiddenField ID="hf_customerid" runat="server" />

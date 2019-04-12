@@ -18,12 +18,12 @@
     <form id="myForm" runat="server">
         <div id="content">
             <div id="header">
-                <a href="#" class="logo">
-                    <img src="images/logo.jpg" alt="" width="195" height="80" /></a>
+                <%--<a href="#" class="logo">
+                    <img src="images/logo.jpg" alt="" width="195" height="80" /></a>--%>
                 <ul id="menu">
-                    <li><a href="Index.aspx" id="active">HOME</a></li>
+                    <li><a href="default.aspx" id="active">HOME</a></li>
                     <li><a href="Appointment.aspx">MAKE APPOINTMENT</a></li>
-                       <li><a href="Appointment.aspx">ABOUT US</a></li>
+                       <li><%--<a href="Appointment.aspx">ABOUT US</a>--%></li>
                     <li><a href="login.aspx">LOGIN</a></li>
                 </ul>
             </div>
@@ -33,12 +33,12 @@
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
-            <div class="footer">
+         <%--   <div class="footer">
                 <!-- VLinks -->
                 <p>
                     All Rights Reserved 2019
                 </p>
-            </div>
+            </div>--%>
     </form>
 </body>
     <script type="text/javascript" src="js/slider.js"></script>

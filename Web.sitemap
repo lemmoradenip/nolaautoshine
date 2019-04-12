@@ -3,6 +3,10 @@
   <siteMapNode url="dashboard.aspx" title="Modules"  description="">
     <siteMapNode url="reservations.aspx" title="Reservations"  description="" />
     <siteMapNode url="Employees.aspx" title="Employees"  description="" />
+    <siteMapNode url="Payroll.aspx" title="Payroll"  description="" />
+    <siteMapNode url="Accounting.aspx" title="Payment "  description="" />
+    <siteMapNode url="DEPArtment.aspx" title="Department"  description="" />
+     <siteMapNode url="Services.aspx" title="Services"  description="" />
     <!--<siteMapNode  title="Customers"  description="" />
     <siteMapNode  title="Services"  description="" />
     --><!--<siteMapNode title="Financial Management"  description="" >--><!--

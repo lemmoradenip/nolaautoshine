@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dtCustomer" targetNamespace="http://tempuri.org/dtCustomer.xsd" xmlns:mstns="http://tempuri.org/dtCustomer.xsd" xmlns="http://tempuri.org/dtCustomer.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="DBConstring" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="DBConstring (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.DBConstring.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Customer_VTableAdapter" GeneratorDataComponentClassName="Customer_VTableAdapter" Name="Customer_V" UserDataComponentName="Customer_VTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DBConstring (Web.config)" DbObjectName="CarWash.dbo.Customer_V" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT id, Name, Mobile, Email, carmake, ScheduledDate, ScheduledTime, Address, CreatedDate, Ispaid, VehicleType, color FROM dbo.Customer_V</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="id" DataSetColumn="id" />
+              <Mapping SourceColumn="Name" DataSetColumn="Name" />
+              <Mapping SourceColumn="Mobile" DataSetColumn="Mobile" />
+              <Mapping SourceColumn="Email" DataSetColumn="Email" />
+              <Mapping SourceColumn="carmake" DataSetColumn="carmake" />
+              <Mapping SourceColumn="ScheduledDate" DataSetColumn="ScheduledDate" />
+              <Mapping SourceColumn="ScheduledTime" DataSetColumn="ScheduledTime" />
+              <Mapping SourceColumn="Address" DataSetColumn="Address" />
+              <Mapping SourceColumn="CreatedDate" DataSetColumn="CreatedDate" />
+              <Mapping SourceColumn="Ispaid" DataSetColumn="Ispaid" />
+              <Mapping SourceColumn="VehicleType" DataSetColumn="VehicleType" />
+              <Mapping SourceColumn="color" DataSetColumn="color" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SelectedServices_VTableAdapter" GeneratorDataComponentClassName="SelectedServices_VTableAdapter" Name="SelectedServices_V" UserDataComponentName="SelectedServices_VTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DBConstring (Web.config)" DbObjectName="CarWash.dbo.SelectedServices_V" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT id, CustomerId, Services, Description, ServiceCode, ServiceCharges, Datecreated, Isvoid, IsPaid, Type, Cartype FROM dbo.SelectedServices_V</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="id" DataSetColumn="id" />
+              <Mapping SourceColumn="CustomerId" DataSetColumn="CustomerId" />
+              <Mapping SourceColumn="Services" DataSetColumn="Services" />
+              <Mapping SourceColumn="Description" DataSetColumn="Description" />
+              <Mapping SourceColumn="ServiceCode" DataSetColumn="ServiceCode" />
+              <Mapping SourceColumn="ServiceCharges" DataSetColumn="ServiceCharges" />
+              <Mapping SourceColumn="Datecreated" DataSetColumn="Datecreated" />
+              <Mapping SourceColumn="Isvoid" DataSetColumn="Isvoid" />
+              <Mapping SourceColumn="IsPaid" DataSetColumn="IsPaid" />
+              <Mapping SourceColumn="Type" DataSetColumn="Type" />
+              <Mapping SourceColumn="Cartype" DataSetColumn="Cartype" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dtCustomer" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="dtCustomer" msprop:Generator_UserDSName="dtCustomer">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Customer_V" msprop:Generator_TableClassName="Customer_VDataTable" msprop:Generator_TableVarName="tableCustomer_V" msprop:Generator_TablePropName="Customer_V" msprop:Generator_RowDeletingName="Customer_VRowDeleting" msprop:Generator_RowChangingName="Customer_VRowChanging" msprop:Generator_RowEvHandlerName="Customer_VRowChangeEventHandler" msprop:Generator_RowDeletedName="Customer_VRowDeleted" msprop:Generator_UserTableName="Customer_V" msprop:Generator_RowChangedName="Customer_VRowChanged" msprop:Generator_RowEvArgName="Customer_VRowChangeEvent" msprop:Generator_RowClassName="Customer_VRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />
+              <xs:element name="Name" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="302" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Mobile" msprop:Generator_ColumnVarNameInTable="columnMobile" msprop:Generator_ColumnPropNameInRow="Mobile" msprop:Generator_ColumnPropNameInTable="MobileColumn" msprop:Generator_UserColumnName="Mobile">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Email" msprop:Generator_ColumnVarNameInTable="columnEmail" msprop:Generator_ColumnPropNameInRow="Email" msprop:Generator_ColumnPropNameInTable="EmailColumn" msprop:Generator_UserColumnName="Email">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="carmake" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columncarmake" msprop:Generator_ColumnPropNameInRow="carmake" msprop:Generator_ColumnPropNameInTable="carmakeColumn" msprop:Generator_UserColumnName="carmake" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ScheduledDate" msprop:Generator_ColumnVarNameInTable="columnScheduledDate" msprop:Generator_ColumnPropNameInRow="ScheduledDate" msprop:Generator_ColumnPropNameInTable="ScheduledDateColumn" msprop:Generator_UserColumnName="ScheduledDate" type="xs:dateTime" />
+              <xs:element name="ScheduledTime" msprop:Generator_ColumnVarNameInTable="columnScheduledTime" msprop:Generator_ColumnPropNameInRow="ScheduledTime" msprop:Generator_ColumnPropNameInTable="ScheduledTimeColumn" msprop:Generator_UserColumnName="ScheduledTime">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Address" msprop:Generator_ColumnVarNameInTable="columnAddress" msprop:Generator_ColumnPropNameInRow="Address" msprop:Generator_ColumnPropNameInTable="AddressColumn" msprop:Generator_UserColumnName="Address" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CreatedDate" msprop:Generator_ColumnVarNameInTable="columnCreatedDate" msprop:Generator_ColumnPropNameInRow="CreatedDate" msprop:Generator_ColumnPropNameInTable="CreatedDateColumn" msprop:Generator_UserColumnName="CreatedDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Ispaid" msprop:Generator_ColumnVarNameInTable="columnIspaid" msprop:Generator_ColumnPropNameInRow="Ispaid" msprop:Generator_ColumnPropNameInTable="IspaidColumn" msprop:Generator_UserColumnName="Ispaid" type="xs:int" minOccurs="0" />
+              <xs:element name="VehicleType" msprop:Generator_ColumnVarNameInTable="columnVehicleType" msprop:Generator_ColumnPropNameInRow="VehicleType" msprop:Generator_ColumnPropNameInTable="VehicleTypeColumn" msprop:Generator_UserColumnName="VehicleType" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="color" msprop:Generator_ColumnVarNameInTable="columncolor" msprop:Generator_ColumnPropNameInRow="color" msprop:Generator_ColumnPropNameInTable="colorColumn" msprop:Generator_UserColumnName="color" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Model" msprop:Generator_ColumnVarNameInTable="columnModel" msprop:Generator_ColumnPropNameInRow="Model" msprop:Generator_ColumnPropNameInTable="ModelColumn" msprop:Generator_UserColumnName="Model" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SelectedServices_V" msprop:Generator_TableClassName="SelectedServices_VDataTable" msprop:Generator_TableVarName="tableSelectedServices_V" msprop:Generator_TablePropName="SelectedServices_V" msprop:Generator_RowDeletingName="SelectedServices_VRowDeleting" msprop:Generator_RowChangingName="SelectedServices_VRowChanging" msprop:Generator_RowEvHandlerName="SelectedServices_VRowChangeEventHandler" msprop:Generator_RowDeletedName="SelectedServices_VRowDeleted" msprop:Generator_UserTableName="SelectedServices_V" msprop:Generator_RowChangedName="SelectedServices_VRowChanged" msprop:Generator_RowEvArgName="SelectedServices_VRowChangeEvent" msprop:Generator_RowClassName="SelectedServices_VRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />
+              <xs:element name="CustomerId" msprop:Generator_ColumnVarNameInTable="columnCustomerId" msprop:Generator_ColumnPropNameInRow="CustomerId" msprop:Generator_ColumnPropNameInTable="CustomerIdColumn" msprop:Generator_UserColumnName="CustomerId" type="xs:int" />
+              <xs:element name="Services" msprop:Generator_ColumnVarNameInTable="columnServices" msprop:Generator_ColumnPropNameInRow="Services" msprop:Generator_ColumnPropNameInTable="ServicesColumn" msprop:Generator_UserColumnName="Services">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Description" msprop:Generator_ColumnVarNameInTable="columnDescription" msprop:Generator_ColumnPropNameInRow="Description" msprop:Generator_ColumnPropNameInTable="DescriptionColumn" msprop:Generator_UserColumnName="Description" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ServiceCode" msprop:Generator_ColumnVarNameInTable="columnServiceCode" msprop:Generator_ColumnPropNameInRow="ServiceCode" msprop:Generator_ColumnPropNameInTable="ServiceCodeColumn" msprop:Generator_UserColumnName="ServiceCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ServiceCharges" msprop:Generator_ColumnVarNameInTable="columnServiceCharges" msprop:Generator_ColumnPropNameInRow="ServiceCharges" msprop:Generator_ColumnPropNameInTable="ServiceChargesColumn" msprop:Generator_UserColumnName="ServiceCharges" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Datecreated" msprop:Generator_ColumnVarNameInTable="columnDatecreated" msprop:Generator_ColumnPropNameInRow="Datecreated" msprop:Generator_ColumnPropNameInTable="DatecreatedColumn" msprop:Generator_UserColumnName="Datecreated" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Isvoid" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnIsvoid" msprop:Generator_ColumnPropNameInRow="Isvoid" msprop:Generator_ColumnPropNameInTable="IsvoidColumn" msprop:Generator_UserColumnName="Isvoid" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IsPaid" msprop:Generator_ColumnVarNameInTable="columnIsPaid" msprop:Generator_ColumnPropNameInRow="IsPaid" msprop:Generator_ColumnPropNameInTable="IsPaidColumn" msprop:Generator_UserColumnName="IsPaid" type="xs:int" minOccurs="0" />
+              <xs:element name="Type" msprop:Generator_ColumnVarNameInTable="columnType" msprop:Generator_ColumnPropNameInRow="Type" msprop:Generator_ColumnPropNameInTable="TypeColumn" msprop:Generator_UserColumnName="Type" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Cartype" msprop:Generator_ColumnVarNameInTable="columnCartype" msprop:Generator_ColumnPropNameInRow="Cartype" msprop:Generator_ColumnPropNameInTable="CartypeColumn" msprop:Generator_UserColumnName="Cartype">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Customer_V" />
+      <xs:field xpath="mstns:Mobile" />
+      <xs:field xpath="mstns:Email" />
+      <xs:field xpath="mstns:ScheduledDate" />
+      <xs:field xpath="mstns:ScheduledTime" />
+    </xs:unique>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="Customer_V_SelectedServices_V" msdata:parent="Customer_V" msdata:child="SelectedServices_V" msdata:parentkey="id" msdata:childkey="CustomerId" msprop:Generator_UserChildTable="SelectedServices_V" msprop:Generator_ChildPropName="GetSelectedServices_VRows" msprop:Generator_UserRelationName="Customer_V_SelectedServices_V" msprop:Generator_ParentPropName="Customer_VRow" msprop:Generator_RelationVarName="relationCustomer_V_SelectedServices_V" msprop:Generator_UserParentTable="Customer_V" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>

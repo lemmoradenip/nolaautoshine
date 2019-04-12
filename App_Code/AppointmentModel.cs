@@ -29,6 +29,9 @@ public class AppointmentModel
     private DateTime scheduleddate;
     private string address;
     private string scheduledtime;
+    private string vehicletype;
+    private string vehiclecolor;
+    private string vehiclemodel;
     DBUtil dbutil = new DBUtil();
     public AppointmentModel()
     {
@@ -40,6 +43,11 @@ public class AppointmentModel
     public int CustomerId {
         get { return this.customerid; }
         set { this.customerid = value; }
+    }
+    public string VehicleType
+    {
+        get { return this.vehicletype; }
+        set { this.vehicletype = value; }
     }
     public string Lname
     {
@@ -86,7 +94,16 @@ public class AppointmentModel
         get { return this.scheduledtime; }
         set { this.scheduledtime = value; }
     }
-
+    public string VehicleColor
+    {
+        get { return this.vehiclecolor; }
+        set { this.vehiclecolor = value; }
+    }
+    public string VehicleModel
+    {
+        get { return this.vehiclemodel; }
+        set { this.vehiclemodel = value; }
+    }
     /// <summary>
     ///fill property: @lname,@fname,@phonenumber,@email,@carmodel,@serviceprovider,GETDATE(),@scheduledate,@address,@time
     /// </summary>
@@ -104,12 +121,46 @@ public class AppointmentModel
         sqlcmd.Parameters.AddWithValue("@email", this.email);
         sqlcmd.Parameters.AddWithValue("@carmodel", this.carmodel);
         sqlcmd.Parameters.AddWithValue("@serviceprovider", this.serviceprovider);
+        sqlcmd.Parameters.AddWithValue("@vehicletype", this.vehicletype);
         sqlcmd.Parameters.AddWithValue("@scheduledate", this.scheduleddate);
         sqlcmd.Parameters.AddWithValue("@time", this.scheduledtime);
+        sqlcmd.Parameters.AddWithValue("@vehiclecolor", this.vehiclecolor);
         sqlcmd.Parameters.AddWithValue("@selectedservices", selectedservices);//concatenated string
-
+        sqlcmd.Parameters.AddWithValue("@vehiclemodel", this.vehiclemodel);//concatenated string
         return dbutil.ExecuteNonQuery(sqlcmd);
+    }
 
+
+    public int DeleteAppointment(string customerid)
+    {
+        SqlCommand sqlcmd = new SqlCommand("usp_AccessAppointment");
+        sqlcmd.CommandType = CommandType.StoredProcedure;
+        sqlcmd.Parameters.AddWithValue("@customerid", Convert.ToInt32(customerid));
+        sqlcmd.Parameters.AddWithValue("@commandtype", "d");//concatenated string
+        return dbutil.ExecuteNonQuery(sqlcmd);
+    }
+
+    public int Jobstatus(string customerid,string jobstatus)
+    {
+        SqlCommand sqlcmd = new SqlCommand("usp_AccessAppointment");
+        sqlcmd.CommandType = CommandType.StoredProcedure;
+        sqlcmd.Parameters.AddWithValue("@customerid", Convert.ToInt32(customerid));
+        sqlcmd.Parameters.AddWithValue("@commandtype", "job");//concatenated string
+        sqlcmd.Parameters.AddWithValue("@jobstatus", jobstatus);//concatenated string
+      
+        return dbutil.ExecuteNonQuery(sqlcmd);
+    }
+
+
+    /// <summary>
+    /// This will get customer id from mobile number registered
+    /// </summary>
+    /// <param name="mobile"></param>
+    /// <returns></returns>
+    public string GetCustomerId(string mobile)
+    {
+        DataTable dt = dbutil.GetData(string.Format("select top 1 id from dbo.customer where mobile='{0}'",mobile),"GetCustomerId");       
+        return (dt.Rows.Count > 0 ? dt.Rows[0][0].ToString() : dt.Rows.Count.ToString());        
     }
 
 }

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class login : System.Web.UI.Page
 {
+    Cryptor validatelogin = new Cryptor();
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -14,16 +15,35 @@ public partial class login : System.Web.UI.Page
 
     protected void btnLogin_Click(object sender, EventArgs e)
     {
-        if (txtUsername.Text.ToString().Trim() != string.Empty && txtPassword.Text.ToString().Trim() != string.Empty)
+        try
         {
-            //validate using Cryptor and proceed if authenticated
-            //redirect to Admin.master page
-            Response.Redirect("~/Dashboard.aspx");
+            if (txtUsername.Text.ToString().Trim() != string.Empty && txtPassword.Text.ToString().Trim() != string.Empty)
+            {
+                //validate using Cryptor and proceed if authenticated
+                //redirect to Admin.master page
+                if (validatelogin.Login(txtUsername.Text.ToString(), txtPassword.Text.ToString()) == "valid")
+                {
+                    Session["username"] = txtUsername.Text.ToString();
+                    Response.Redirect("~/Reservations.aspx");
+                    div_error.Visible = false;
+                }
+                else
+                {
+                    throw new Exception("Login Credentials invalid!");
+                }
+
+            }
+            else
+            {
+                //Opps sorry invalid password here
+                throw new Exception("Opps! Invalid Login. Please try again!");
+            }
         }
-        else
+        catch (Exception ex)
         {
-            //Opps sorry invalid password here
-            lblerror.Text = "Opps! Invalid Login. Please try again!";
+            lblerror.Text = ex.Message.ToString();
+            div_error.Visible = true;
         }
+
     }
 }

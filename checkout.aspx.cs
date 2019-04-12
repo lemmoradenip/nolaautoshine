@@ -9,9 +9,18 @@ public partial class Checkout : System.Web.UI.Page
 {
     Payment payment = new Payment();
     DBUtil dbutil = new DBUtil();
-
+    Cryptor validate = new Cryptor();
     protected void Page_Load(object sender, EventArgs e)
     {
+        string usernamesession = (string)(Session["username"]);
+        //   hfusername.Text = "*" + usernamesession + validate.ValidateAccessLevel(usernamesession).ToString();
+        if (usernamesession==string.Empty)
+        {
+            Response.Write("<script>confirm('Access Denied! Go back to previous page!   ');</script>");
+            Response.Redirect("~/Reservations.aspx");
+        }
+           
+
         string customerid;
         customerid = Request.QueryString["id"];
         lblcustomerid.Text = customerid;
@@ -74,7 +83,7 @@ public partial class Checkout : System.Web.UI.Page
         try
         {
             string qry = String.Format("SELECT top 1  invoiceno,invoicedate,billtocustomer,billtoaddr,servicedate,vehicletype,carmake,currency,invoicenetamount "
-            + " FROM Checkout_V WHERE  Customerid ={0} and ispaid <> 1", lblcustomerid.Text.ToString());
+            + " FROM Checkout_V WHERE ispaid is null and Customerid ={0} ", lblcustomerid.Text.ToString());
             DataTable dt = dbutil.GetData(qry, "BindInvoiceHeader()");
             if (dt.Rows.Count > 0)
             {
@@ -130,18 +139,19 @@ public partial class Checkout : System.Web.UI.Page
         {
             txtAmountReceived.Enabled = false;
             txtAmountReceived.BackColor = System.Drawing.Color.LightGray;
-            btnpay.Text = "PAY";
+            trcheck.Visible = false;
         }
         else if (ddlpaymentmode.SelectedValue == "CHECK")
         {
             txtAmountReceived.BackColor = System.Drawing.Color.LightGray;
-            btnpay.Text = "NEXT";
+            txtAmountReceived.Enabled = false;
+            trcheck.Visible = true;
         }
         else
         {
             txtAmountReceived.Enabled = true;
             txtAmountReceived.BackColor = System.Drawing.Color.Yellow;
-            btnpay.Text = "PAY";
+            trcheck.Visible = false;
         }
     }
     protected void btnpay_Click(object sender, EventArgs e)
@@ -153,8 +163,45 @@ public partial class Checkout : System.Web.UI.Page
 
             if (ddlpaymentmode.SelectedValue.ToString() == "CHECK")
             {
-                string custreservationid = string.Empty;//gv_reservations.Rows[i].Cells[0].Text.ToString();
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "Openwindow", string.Format("window.open('cheque.aspx?id={0}');", custreservationid), true);//this will open new tab for payment checkout.
+                if (txtbank.Text.ToString() == String.Empty)
+                {
+                    throw new Exception("Please check bank name");
+                }
+                else if (txtchecknoseries.Text.ToString() == String.Empty)
+                { throw new Exception("Please input check series"); }
+
+                else
+                {
+                    string custreservationid = lblcustomerid.Text.ToString();
+                    //   ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "Openwindow", string.Format("window.open('cheque.aspx?id={0}');", custreservationid), true);//this will open new tab for payment checkout.
+                    payment.Amount = Convert.ToDecimal(txtinvoiceamount.Text.ToString());
+                    payment.PaymentMethod = ddlpaymentmode.SelectedValue.ToString();
+                    payment.Username = "[session]";
+                    payment.PaymentSource = string.Format("CASHIER#{0}", "01");// just concatenate which CASHIER No. example CASHIER#10
+                    payment.CheckBank = txtbank.Text.ToString();
+                    payment.CheckSeries = txtchecknoseries.Text.ToString();
+
+                    int affectedrecords = payment.MakePayment(lblcustomerid.Text.ToString(), lblinvoice.Text.ToString());
+                    if (affectedrecords > 0)
+                    {
+                        //print invoice via crystall report on _self , that means posted transactions
+                        lblerror.Text = string.Empty;
+                        div_error.Visible = false;
+                        Response.Write("<script>alert('Payment successful!');</script>");
+                        Response.Redirect("~/Reservations.aspx");
+                    }
+                    else
+                    {
+                        //error message
+                        lblerror.Text = "Oopps! Something wen't wrong during saving!Contact your SysAdmin";
+                        div_error.Visible = true;
+                    }
+                }
+            }
+            else if (ddlpaymentmode.SelectedValue.ToString() == "CARD")
+            {
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "Openwindow", string.Format("window.open('payment.aspx?id={0}');", lblcustomerid.Text.ToString()), true);//this will open new tab for payment checkout.
+
             }
 
             else //if cash amount received is required else card is being swiped by preconfigured POS, which means it's auto debit to bank account given.
@@ -174,12 +221,17 @@ public partial class Checkout : System.Web.UI.Page
                 payment.PaymentMethod = ddlpaymentmode.SelectedValue.ToString();
                 payment.Username = "[session]";
                 payment.PaymentSource = string.Format("CASHIER#{0}", "01");// just concatenate which CASHIER No. example CASHIER#10
+                //payment.CheckBank = txtbank.Text.ToString();
+                //payment.CheckSeries = txtchecknoseries.Text.ToString();
+
                 int affectedrecords = payment.MakePayment(lblcustomerid.Text.ToString(), lblinvoice.Text.ToString());
                 if (affectedrecords > 0)
                 {
                     //print invoice via crystall report on _self , that means posted transactions
                     lblerror.Text = string.Empty;
                     div_error.Visible = false;
+                    Response.Write("<script>alert('Payment successful!');</script>");
+                    Response.Redirect("~/Reservations.aspx");
                 }
                 else
                 {

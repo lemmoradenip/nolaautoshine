@@ -40,7 +40,12 @@ public class Cryptor
         return (dt.Rows.Count.ToString() == "1" ? "valid" : "invalid");
     }
 
-
+    public int ValidateAccessLevel(string username)
+    {
+        DataTable dt = new DataTable();
+        dt = dbutil.GetData(string.Format("select 1 from employeelogin where username='{0}' and accesslevel=1", username), "Invalid Credentials!");
+        return (dt.Rows.Count.ToString() == "1" ? 1 : 0);
+    }
 
     public static string Decrypt(string cipherString, bool useHashing)
     {

@@ -28,6 +28,7 @@ public class InventoryModel
     private string phone;
     private string contactperson;
     private string address;
+
     /*items*/
     private int materialid;
     private string itemno;
@@ -40,6 +41,13 @@ public class InventoryModel
     private string notes;
     private decimal amountreceive;
     private string uom;
+
+    /*services*/
+    private int id;
+    private string title;
+    private decimal amount;
+    private string vehicletype;
+
     public InventoryModel()
     {
         //
@@ -127,6 +135,27 @@ public class InventoryModel
         get { return this.uom; }
         set { this.uom = value; }
     }
+    /*services property*/
+    public int Id
+    {
+        get { return this.id; }
+        set { this.id = value; }
+    }
+    public string Title
+    {
+        get { return this.title; }
+        set { this.title = value; }
+    }
+    public decimal Amount
+    {
+        get { return this.amount; }
+        set { this.amount = value; }
+    }
+    public string VehicleType
+    {
+        get { return this.vehicletype; }
+        set { this.vehicletype = value; }
+    }
 
     /// <summary>
     /// 
@@ -166,20 +195,55 @@ public class InventoryModel
         sqlcmd.Parameters.AddWithValue("@qtyreceive", this.qtyreceived);
 
         return dbutil.ExecuteNonQuery(sqlcmd);
+    }
+    /// <summary>
+    /// delete item using materialid
+    /// </summary>
+    /// <returns></returns>
+    public int Delete_Item()
+    {
+        SqlCommand sqlcmd = new SqlCommand("usp_Access_Item");
+        sqlcmd.CommandType = CommandType.StoredProcedure;
+        sqlcmd.Parameters.AddWithValue("@commandtype", "d");//d=delete, i/u is null
+        sqlcmd.Parameters.AddWithValue("@materialid", this.materialid);
+        return dbutil.ExecuteNonQuery(sqlcmd);
 
     }
+    /// <summary>
+    /// Generate vendor number series
+    /// </summary>
+    /// <returns></returns>
     public string GenerateVendorId()
     {
         string returnval;
         try
         {
-            DataTable dt = dbutil.GetData("select top 1 id from vendor order by id desc", "GenerateVendorId");
-            returnval = (dt.Rows.Count > 0 ? dt.Rows[0][0].ToString().PadLeft(4, '0') : "0001");
+            DataTable dt = dbutil.GetData("select top 1 id+1 from vendor order by id desc", "GenerateVendorId");
+            returnval = (dt.Rows.Count > 0 ? dt.Rows[0][0].ToString().PadLeft(4, '0') : dt.Rows.Count.ToString());
         }
         catch (Exception ex)
         {
             throw new Exception("GenerateVendorId:" + ex.Message);
         }
         return returnval;
+    }
+
+
+    /// <summary>
+    /// Fille parameter title,amount,vehicletype
+    /// </summary>
+    /// <param name="commandtype"></param>
+    /// <returns>int</returns>
+    public int Access_services(string commandtype)
+    {
+        SqlCommand sqlcmd = new SqlCommand("usp_Services");
+        sqlcmd.CommandType = CommandType.StoredProcedure;
+        sqlcmd.Parameters.AddWithValue("@commandtype", commandtype);//d=delete, i/u is null
+        sqlcmd.Parameters.AddWithValue("@id", this.id);
+        sqlcmd.Parameters.AddWithValue("@title", this.title);
+        sqlcmd.Parameters.AddWithValue("@amount", this.amount);
+        sqlcmd.Parameters.AddWithValue("@vehicletype", this.vehicletype);        
+        return dbutil.ExecuteNonQuery(sqlcmd);
+
     }
 }

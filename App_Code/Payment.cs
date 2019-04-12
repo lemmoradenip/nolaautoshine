@@ -32,6 +32,7 @@ public class Payment
     private string ip;
     private string checkbank;
     private string checkseries;
+    private string month;
 
     DBUtil dbutil = new DBUtil();
     public Payment()
@@ -119,6 +120,12 @@ public class Payment
         set { this.checkseries = value; }
     }
 
+    public string Month
+    {
+        get { return this.month; }
+        set { this.month = value; }
+    }
+
 
 
 
@@ -164,6 +171,56 @@ public class Payment
         sqlcmd.Parameters.AddWithValue("@checkbank", this.checkbank);
         sqlcmd.Parameters.AddWithValue("@checkseries", this.checkseries);
         return dbutil.ExecuteNonQuery(sqlcmd);
+
+    }
+
+    public decimal TotalPayment()
+    {
+        string returnval="0";
+        try
+        {
+            DataTable dt = dbutil.GetData(string.Format("SELECT SUM(isnull(amountofcashreceived,invoiceamount)) FROM dbo.PaymentTransaction where UPPER(DATENAME(month,paymentdate))='{0}'", this.month), "TotalPayment");
+            returnval = (dt.Rows.Count > 0 ? dt.Rows[0][0].ToString() : "0");
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("TotalPayment:" + ex.Message);
+        }
+        return Convert.ToDecimal((returnval==string.Empty?"0":returnval));
+    }
+
+    public decimal TotalInventory()
+    {
+        string returnval = "0";
+        try
+        {
+            DataTable dt = dbutil.GetData(string.Format("select SUM(unitprice*qtyreceive) from Inventory where UPPER(DATENAME(month,receiveddate))='{0}'", this.month), "TotalPayment");
+            returnval = (dt.Rows.Count > 0 ? dt.Rows[0][0].ToString() : "0");
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("TotalInventory:" + ex.Message);
+        }
+        return Convert.ToDecimal((returnval == string.Empty ? "0" : returnval));
+    }
+    public decimal TotalPayroll()
+    {
+        string returnval = "0";
+        try
+        {
+            DataTable dt = dbutil.GetData(string.Format("select sum(totalsalary) from payrolltransaction_v where payschedule = '{0}'", this.month), "TotalPayment");
+            returnval = (dt.Rows.Count > 0 ? dt.Rows[0][0].ToString() : "0");
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("TotalPayroll:" + ex.Message);
+        }
+        return Convert.ToDecimal((returnval == string.Empty ? "0" : returnval));
+    }
+
+    public decimal TotalSalary()
+    {
+        return TotalPayment() - (TotalPayroll() + TotalInventory());
 
     }
 

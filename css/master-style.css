@@ -2,16 +2,16 @@
     margin: 0px;
     padding: 0px;
     font-family: Arial;
-    box-sizing: border-box
+    box-sizing: border-box;
 }
 
 body {
     font-family: Verdana, sans-serif;
-    margin: 0
+    margin: 0;
 }
 
 img {
-    border: 0px
+    border: 0px;
 }
 
 
@@ -47,13 +47,15 @@ img {
         #services .table tr {
             /*display: block;
         float: left;*/
+            input [type="checkbox"] width: 30px; /*Desired width*/
+            height: 30px; /*Desired height*/
             font-family: Tahoma;
-            font-size: 14px;
+            font-size: 1.2rem;
             color: #AFB8D3;
             line-height: 18px;
             width: 100%;
             margin: 0 10px 0 0;
-            border: 1px solid #1E2027
+            border: 1px solid #1E2027;
         }
 
         #services .table td {
@@ -68,8 +70,8 @@ img {
 html {
     width: 100%;
     height: 100%;
-    background-color: #101115;
-    background-image: url(images/bg.gif);
+    /*background-color: #101115;*/
+    /*background-image: url(images/bg.gif);*/
     background-position: top left;
     background-repeat: repeat-x;
     font-family: Tahoma Verdana;
@@ -77,7 +79,7 @@ html {
 
 body {
     width: 100%;
-    background-image: url(images/bot_bg.gif);
+    /*background-image: url(images/bot_bg.gif);*/
     background-position: bottom left;
     background-repeat: repeat-x;
     margin: 0px;
@@ -89,7 +91,7 @@ body {
 #header {
     padding: 0 0 80px 23px;
     /*background-image: url(images/bg_top.png);*/
-    background-image: url(../images/bg_header.jpg);
+    /*background-image: url(../images/bg_header.jpg);*/
     background-repeat: repeat;
     /*background-position: bottom left;*/
     /*background-color: #232428;*/
@@ -98,7 +100,7 @@ body {
 
 #content {
     width: 100%;
-    margin: 0 auto;
+    margin-top: 500px;
 }
 
 
@@ -114,6 +116,7 @@ body {
     .content .centercontent {
         width: 80%;
         margin: 0 auto;
+        top: 100px;
         padding: 0px;
         color: white;
     }
@@ -122,7 +125,7 @@ body {
     content: "";
     /*display: table;*/
     clear: both;
-    display: inline-block;
+    /*display: inline-block;*/
 }
 
 
@@ -143,15 +146,15 @@ body {
 
 .bread-crumbs {
     width: auto;
-    margin: 0 auto;
+    margin: 83px auto 5px auto;
     padding: 2%;
-    color: lightgray;
-    background-color: #292A2D;
+    color: white;
+    background-color: #234D6B;
 }
 
 .error-section {
     width: auto;
-    margin: 10px 0 0 0;
+    margin: 0;
     padding: 2%;
     color: #823651;
     background-color: #ECC7C7;
@@ -160,17 +163,17 @@ body {
 }
 
 .logo {
-    float: left
+    float: left;
 }
 
 #menu {
     padding: 30px 150px 0 90px;
-    float: right
+    float: right;
 }
 
     #menu li {
         list-style-type: none;
-        display: inline
+        display: inline;
     }
 
     #menu a {
@@ -200,7 +203,7 @@ body {
     margin: 5px auto;
     padding: 2%;
     color: lightgray;
-    background-color: #292A2D;
+    background-color: #234D6B;
 }
 
 #form-login {
@@ -208,7 +211,7 @@ body {
     margin: 5px auto;
     padding: 2%;
     color: lightgray;
-    background-color: #292A2D;
+    background-color: #234D6B;
 }
 
 
@@ -236,6 +239,11 @@ body {
             text-align: right;
         }
 
+    .form-header select {
+        padding: 3px;
+        border-radius: 5px;
+    }
+
     .form-header input {
         width: 300px;
         padding: 7px;
@@ -245,7 +253,7 @@ body {
 
 .form-footer {
     /*float: right;*/
-    background-color: #292A2D;
+    background-color: #234D6B;
     text-align: right;
     margin-bottom: 0px;
     padding: 20px;
@@ -281,26 +289,26 @@ body {
 /*style for front page*/
 .aboutus {
     width: 100%;
-    background-color:red;
+    background-color: red;
 }
 /*Front page style*/
-.content .services
-{
-    padding:10px 100px;
-   font-family:Arial 'Arial Rounded MT';
-   background-color:transparent;
-   letter-spacing:2px;
-   line-height:1.7em;
-   padding-top:50px;
+.content .services {
+    padding: 10px 100px;
+    font-family: Arial 'Arial Rounded MT';
+    background-color: transparent;
+    letter-spacing: 2px;
+    line-height: 1.7em;
+    padding-top: 50px;
 }
-.content .services h1 {
-   
-    margin-bottom:10px;
-    padding: 0px 5px 30px 5px;
-    text-align:left;
-    color:lightgray;
-    margin-bottom:50px;
-}
+
+    .content .services h1 {
+        margin-bottom: 10px;
+        padding: 0px 5px 30px 5px;
+        text-align: left;
+        color: lightgray;
+        margin-bottom: 50px;
+    }
+
     .content .services .leftcolumn {
         background-color: #101115; /*idk why i put this*/
         width: 50%;
@@ -309,15 +317,18 @@ body {
         text-justify: inter-word;
         color: #92A1AC;
     }
+
     .content .services .rightcolumn {
         background-color: #101115;
         /*background-color:red;*/
         width: 50%;
         padding: 0px 50px 0px 50px;
     }
-    .content .services .rightcolumn  img{
-        border-radius:5px;
-    }
+
+        .content .services .rightcolumn img {
+            border-radius: 5px;
+        }
+
     .content .services #promo-banner {
         background-color: #141519;
         /*padding: 100px 0px;*/
@@ -325,4 +336,23 @@ body {
         /*margin-left:0px;
         margin-right:0px;*/
     }
+/*html, body {
+    width: 100%;
+    height: 100%;
+}*/
 
+.map-frame {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.map-content {
+    z-index: 10;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    width: 390px;
+    background-color: black;
+    color: #FFF;
+}

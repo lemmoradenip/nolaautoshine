@@ -22,7 +22,8 @@ public class Employee
 {
     DBUtil dbutil = new DBUtil();
     private int employeeid, managerid, status, departmentid;
-    private string emp_fname, emp_lname, emp_address, emp_phone, emp_job,email;
+    private decimal rate, otrate,workedhrs,othrs;
+    private string emp_fname, emp_lname, emp_address, emp_phone, emp_job, email, ssn, paytype,payschedule;
     private DateTime hireddate, enddate;
 
     public Employee()
@@ -86,8 +87,43 @@ public class Employee
         get { return this.email; }
         set { this.email = value; }
     }
+    public string SSN
+    {
+        get { return this.ssn; }
+        set { this.ssn = value; }
+    }
+    public string PayType
+    {
+        get { return this.paytype; }
+        set { this.paytype = value; }
+    }
+    public decimal Rate
+    {
+        get { return this.rate; }
+        set { this.rate = value; }
+    }
+    public decimal OTRate
+    {
+        get { return this.otrate; }
+        set { this.otrate = value; }
+    }
+    public decimal WorkedHrs
+    {
+        get { return this.workedhrs; }
+        set { this.workedhrs = value; }
+    }
+    public decimal OTWorkedHrs
+    {
+        get { return this.othrs; }
+        set { this.othrs = value; }
+    }
+    public string PaySchedule
+    {
+        get { return this.payschedule; }
+        set { this.payschedule = value; }
+    }
     /// <summary>
-    /// fill @Emp_Fname,@Emp_Lname,@Emp_Address,@Emp_Phone,@Emp_Job,@HiredDate,@DepartmentId
+    /// fill @Emp_Fname,@Emp_Lname,@Emp_Address,@Emp_Phone,@Emp_Job,@HiredDate,@DepartmentId,ssn,paytype,rate,otrate
     /// </summary>
     /// <param name="commandtype"></param>
     /// <returns>int</returns>
@@ -105,17 +141,63 @@ public class Employee
         sqlcmd.Parameters.AddWithValue("@enddate", this.enddate);
         sqlcmd.Parameters.AddWithValue("@email", this.email);
         sqlcmd.Parameters.AddWithValue("@departmentid", this.departmentid);
+        sqlcmd.Parameters.AddWithValue("@id", this.employeeid);
+        sqlcmd.Parameters.AddWithValue("@SSN", this.ssn);
+        sqlcmd.Parameters.AddWithValue("@Paytype", this.paytype);
+        sqlcmd.Parameters.AddWithValue("@rate", this.rate);
+        sqlcmd.Parameters.AddWithValue("@otrate", this.otrate);
         return dbutil.ExecuteNonQuery(sqlcmd);
     }
+
+    public int Access_Department(string commandtype, string id, string departmentname, int managerid)
+    {
+        SqlCommand sqlcmd = new SqlCommand("usp_Department");
+        sqlcmd.CommandType = CommandType.StoredProcedure;
+        sqlcmd.Parameters.AddWithValue("@commandtype", commandtype);//d=delete, i/u is null
+        sqlcmd.Parameters.AddWithValue("@id", id);//d=delete, i/u is null
+        sqlcmd.Parameters.AddWithValue("@departmentname", departmentname);
+        sqlcmd.Parameters.AddWithValue("@managerid", managerid);
+        return dbutil.ExecuteNonQuery(sqlcmd);
+    }
+
+    /// <summary>
+    /// id,employeeid,payschedule,workedhrs,ot
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public int Access_PayrollTransaction(string id)
+    {
+        SqlCommand sqlcmd = new SqlCommand("usp_AccessPayrollTransaction");
+        sqlcmd.CommandType = CommandType.StoredProcedure;
+        sqlcmd.Parameters.AddWithValue("@id",id);//d=delete, i/u is null
+        sqlcmd.Parameters.AddWithValue("@employeeid", this.employeeid);
+        sqlcmd.Parameters.AddWithValue("@payschedule", this.payschedule);
+        sqlcmd.Parameters.AddWithValue("@workedhrs", this.workedhrs);
+        sqlcmd.Parameters.AddWithValue("@ot", this.othrs);
+        return dbutil.ExecuteNonQuery(sqlcmd);
+    }
+
+    public int Delete_Employee(int employeeid)
+    {
+        SqlCommand sqlcmd = new SqlCommand("usp_Access_Employee");
+        sqlcmd.CommandType = CommandType.StoredProcedure;
+        sqlcmd.Parameters.AddWithValue("@commandtype", "d");//d=delete, i/u is null     
+        sqlcmd.Parameters.AddWithValue("@id", employeeid);
+        return dbutil.ExecuteNonQuery(sqlcmd);
+    }
+
+
     public string GenerateEmployeeId()
     {
         string returnval;
-        try { 
-        DataTable dt = dbutil.GetData("select top 1 employeeid from employee order by employeeid desc", "GenerateEmployeeId");
-        returnval= (dt.Rows.Count > 0 ? dt.Rows[0][0].ToString().PadLeft(4,'0') : "0001");
+        try
+        {
+            DataTable dt = dbutil.GetData("select top 1 employeeid+1 from employee order by employeeid desc", "GenerateEmployeeId");
+            returnval = (dt.Rows.Count > 0 ? dt.Rows[0][0].ToString().PadLeft(4, '0') : "0001");
         }
-        catch (Exception ex) {
-            throw new Exception("Access_Employee:"+ex.Message);
+        catch (Exception ex)
+        {
+            throw new Exception("Access_Employee:" + ex.Message);
         }
         return returnval;
     }

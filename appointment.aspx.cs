@@ -46,7 +46,7 @@ public partial class Appointment : System.Web.UI.Page
     {
         try
         {
-            string selectedservices = GetSelectedServicesId(gvInterior) + GetSelectedServicesId(gv_exterior);
+            string selectedservices = GetSelectedServicesId(gvInterior); //+ GetSelectedServicesId(gv_exterior);
 
             if (txtCFname.Text.ToString().Trim() == string.Empty)
             { throw new Exception("Opps! First Name is required."); }
@@ -77,11 +77,26 @@ public partial class Appointment : System.Web.UI.Page
                 myAppointment.ServiceProvider = txtServiceProvider.Text.ToString().Trim();
                 myAppointment.ScheduledDate = Convert.ToDateTime(txtscheduleddate.Text.ToString());
                 myAppointment.ScheduledTime = ddlCTime.SelectedValue.ToString();
+                myAppointment.VehicleType = ddlvehicletype.SelectedValue.ToString();
+                myAppointment.VehicleColor = txtcolor.Text.ToString();
+                myAppointment.VehicleModel = txtcarmodel.Text.ToString();
                 int result = myAppointment.AccessAppointment(selectedservices.Trim());
                 if (result > 0)
                 {
                     div_error.Visible = false;
-                    Response.Redirect("~/successful.aspx");
+                    //if not card payment is selected
+                    if (ddlpaymenttype.SelectedValue.ToString() == "CASH")
+                    {
+                        Response.Redirect("~/successful.aspx");
+                    }
+                    else//CREDIT CARD
+                    {
+
+                        //get customer id by mobile number 
+                        string custreservationid = myAppointment.GetCustomerId(txtCphoneNumber.Text.ToString());
+                        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "Openwindow", string.Format("window.open('payment.aspx?id={0}');", custreservationid), true);//this will open new tab for payment checkout.
+
+                    }
                 }
                 else
                 {

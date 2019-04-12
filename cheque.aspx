@@ -13,16 +13,17 @@
             <table class="table-form">
 
                 <tr>
-                    <td>Invoice No.
+                    <td>Banks
                     </td>
                     <td>
-                        <asp:Label ID="lblinvoice" runat="server">--</asp:Label>
+                        <asp:Textbox ID="lblinvoice" runat="server" placeholder="ABC Bank"></asp:Textbox>
                     </td>
-                    <td>Invoice Net Amount</td>
+                    <td>Cheque No. Series</td>
                     <td>
-                        <asp:TextBox ID="txtInvoicenetamount" Enabled="false" runat="server" placeholder="0.00"></asp:TextBox>
+                        <asp:TextBox ID="txtcheckseries" Enabled="false" runat="server" placeholder="ABC013251947-201"></asp:TextBox>
                     </td>
                 </tr>
+                
             </table>
         </div>
     </div>

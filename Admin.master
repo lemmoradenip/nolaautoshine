@@ -20,10 +20,11 @@
     <form id="myForm" runat="server">
         <div id="content">
             <div id="header">
-                <a href="#" class="logo">
-                    <img src="images/logo.jpg" alt="" width="195" height="80" /></a>
+               <%-- <a href="#" class="logo">
+                    <img src="images/logo.jpg" alt="" width="195" height="80" /></a>--%>
+                
                 <ul id="menu">
-                    <li><a href="Index.aspx">LOGOUT</a></li>
+                    <li><a href="default.aspx">LOGOUT</a></li>
                 </ul>
             </div>
         </div>
@@ -63,7 +64,7 @@
                         </div>
 
                     </td>
-                    <td style="border-style: none none none solid;background-color:#2D2E31; border-right-width: thin;width:inherit; border-left-width: thin; border-color: #808080; height: 100%; left: 240px; position: fixed; top: 80px;">
+                    <td style="border-style: none none none solid;background-color:#1f4d6b; border-right-width: thin;width:inherit; border-left-width: thin; border-color: #808080; height: 100%; left: 240px; position: fixed; top: 80px;">
                         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                         </asp:ContentPlaceHolder>
                     </td>

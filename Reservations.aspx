@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="Reservations.aspx.cs" Inherits="Reservations" %>
+﻿<%@ Page Title="NOLA" Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="Reservations.aspx.cs" Inherits="Reservations" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     
@@ -50,30 +50,53 @@
         </div>
         
         <div id="services">
-            <asp:GridView ID="gv_reservations" CssClass="table" OnRowDataBound="gv_reservations_RowDataBound" Width="100%" AutoGenerateColumns="false" runat="server" >
+            <asp:GridView ID="gv_reservations" CssClass="table" OnRowDataBound="gv_reservations_RowDataBound" OnDataBound="gv_reservations_DataBound"  Width="100%" AutoGenerateColumns="false" runat="server" >
                 <Columns>
                     <asp:BoundField ItemStyle-CssClass="hidden" HeaderStyle-CssClass="hidden" DataField="id" />
                     <asp:TemplateField HeaderText="No.">
                         <ItemTemplate>
                             <%# Container.DataItemIndex + 1 %>
                         </ItemTemplate>
-                        <HeaderStyle Width="5%" />
-                        <ItemStyle HorizontalAlign="Center" Width="5%" />
+                        <HeaderStyle Width="3%" />
+                        <ItemStyle HorizontalAlign="Center" Width="3%" />
                     </asp:TemplateField>
                     <asp:BoundField DataField="name" HeaderText="Customer Name" ItemStyle-Width="10%" HeaderStyle-Width="10%" />
-                    <asp:BoundField DataField="scheduleddate" HeaderText="Scheduled Date" DataFormatString="{0:dd-MMM-yyyy}" ItemStyle-Width="10%" HeaderStyle-Width="10%" />
+                    <asp:BoundField DataField="scheduleddate" HeaderText="Date" DataFormatString="{0:dd-MMM-yyyy}" ItemStyle-Width="10%" HeaderStyle-Width="10%" />
                     <asp:BoundField DataField="ScheduledTime" HeaderText="Time" ItemStyle-Width="10%" HeaderStyle-Width="10%"/>
-                    <asp:BoundField DataField="carmake" HeaderText="Carmake" ItemStyle-Width="10%" HeaderStyle-Width="10%"/>
+                    <asp:BoundField DataField="carmake" HeaderText="Carmake" ItemStyle-Width="5%" HeaderStyle-Width="5%"/>                   
+                      <asp:BoundField DataField="vehicletype" HeaderText="Type" ItemStyle-Width="10%" HeaderStyle-Width="10%"/>
+                       <asp:BoundField DataField="color" HeaderText="Color" ItemStyle-Width="5%" HeaderStyle-Width="5%"/>
                     <asp:BoundField DataField="mobile" HeaderText="Mobile No." ItemStyle-Width="10%" HeaderStyle-Width="10%"/>
-                    <asp:BoundField DataField="email" HeaderText="Email" ItemStyle-Width="10%" HeaderStyle-Width="10%"/>
-
-                    <asp:TemplateField HeaderText="Payments">
+                    <%--<asp:BoundField DataField="email" HeaderText="Email" ItemStyle-Width="10%" HeaderStyle-Width="10%"/>--%>
+                      <asp:TemplateField HeaderText="">
                         <ItemTemplate>
-                            <asp:LinkButton ID="lnkpay" ForeColor="Yellow" OnClick="lnkpay_Click"  runat="server" Text="PAY"></asp:LinkButton>
+                            <asp:LinkButton ID="lnkprint" CssClass="" OnClick="lnkprint_Click"  runat="server" ForeColor="ORANGE" Text="PRINT"></asp:LinkButton>
                         </ItemTemplate>
                         <HeaderStyle Width="5%" />
                         <ItemStyle HorizontalAlign="Center" Width="5%" />
                     </asp:TemplateField>
+                      <asp:TemplateField HeaderText="">
+                        <ItemTemplate>
+                            <asp:LinkButton ID="lnkjob" CssClass="" ForeColor="LightGreen" OnClick="lnkjob_Click"  runat="server" Text="CLOSE TICKET"></asp:LinkButton>
+                        </ItemTemplate>
+                        <HeaderStyle Width="5%" />
+                        <ItemStyle HorizontalAlign="Center" Width="5%" />
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="">
+                        <ItemTemplate>
+                            <asp:LinkButton ID="lnkpay" CssClass="" OnClick="lnkpay_Click" ForeColor="YELLOW"  runat="server" Text="PAY"></asp:LinkButton>
+                        </ItemTemplate>
+                        <HeaderStyle Width="5%" />
+                        <ItemStyle HorizontalAlign="Center" Width="5%"   />
+                    </asp:TemplateField>
+                      <asp:TemplateField HeaderText="">
+                        <ItemTemplate>
+                            <asp:LinkButton ID="lnkdelete" CssClass="" OnClientClick="return confirm('Are you sure you want to delete?');" ForeColor="Red" OnClick="lnkdelete_Click"  runat="server" Text="DELETE"></asp:LinkButton>
+                        </ItemTemplate>
+                        <HeaderStyle Width="5%" />
+                        <ItemStyle HorizontalAlign="Center" Width="5%" />
+                    </asp:TemplateField>
+                     <asp:BoundField ItemStyle-CssClass="hidden" HeaderStyle-CssClass="hidden" DataField="ispaid" />
                 </Columns>
             </asp:GridView>
         </div>
