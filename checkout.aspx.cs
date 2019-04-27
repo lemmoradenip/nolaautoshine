@@ -126,7 +126,7 @@ public partial class Checkout : System.Web.UI.Page
         //do balance here
         if (txtAmountReceived.Text.ToString().Trim() != string.Empty)
         {
-            decimal balance = Convert.ToDecimal(txtinvoiceamount.Text.ToString()) - Convert.ToDecimal(txtAmountReceived.Text.ToString());
+            decimal balance = Convert.ToDecimal(txtAmountReceived.Text.ToString())-Convert.ToDecimal(txtinvoiceamount.Text.ToString()) ;
             //lblchanged.Text = balance.ToString("D");
             lblchanged.Text = String.Format("{0:#,##0.##}", balance);
         }
@@ -139,6 +139,7 @@ public partial class Checkout : System.Web.UI.Page
         {
             txtAmountReceived.Enabled = false;
             txtAmountReceived.BackColor = System.Drawing.Color.LightGray;
+            txtAmountReceived.Text = String.Format("{0:#,##0.##}", txtinvoiceamount.Text.ToString());
             trcheck.Visible = false;
         }
         else if (ddlpaymentmode.SelectedValue == "CHECK")
@@ -198,11 +199,11 @@ public partial class Checkout : System.Web.UI.Page
                     }
                 }
             }
-            else if (ddlpaymentmode.SelectedValue.ToString() == "CARD")
-            {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "Openwindow", string.Format("window.open('payment.aspx?id={0}');", lblcustomerid.Text.ToString()), true);//this will open new tab for payment checkout.
+            //else if (ddlpaymentmode.SelectedValue.ToString() == "CARD")
+            //{
+            //    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "Openwindow", string.Format("window.open('payment.aspx?id={0}');", lblcustomerid.Text.ToString()), true);//this will open new tab for payment checkout.
 
-            }
+            //}
 
             else //if cash amount received is required else card is being swiped by preconfigured POS, which means it's auto debit to bank account given.
             {

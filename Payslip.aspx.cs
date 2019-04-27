@@ -42,7 +42,7 @@ public partial class PrintPaySlip : System.Web.UI.Page
             {
                 //column index
                 string currency = "  USD";
-                int id=0, employeeid=1, name=2, emp_job=3, ssn=4, paytype=5, rate=6, otrate=7, workedhrs=8, othrs=9, payschedule=10, totalregular=11, totalovertime=12, totalsalary=12,departmentname=13,email=14,emp_phone=15, emp_address=16,hireddate=17;
+                int id=0, employeeid=1, name=2, emp_job=3, ssn=4, paytype=5, rate=6, otrate=7, workedhrs=8, othrs=9, payschedule=10, totalregular=11, totalovertime=12, totalsalary=13,departmentname=14,email=15,emp_phone=16, emp_address=17,hireddate=18;
                 // String.Format("{0:#,##0.##}", payment.TotalPayment());
                 lblEmployeeId.Text = empid.PadLeft(4, '0');
                 lblemployeename.Text = dt.Rows[0][name].ToString();

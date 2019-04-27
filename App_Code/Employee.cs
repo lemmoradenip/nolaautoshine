@@ -161,7 +161,7 @@ public class Employee
     }
 
     /// <summary>
-    /// id,employeeid,payschedule,workedhrs,ot
+    /// id,employeeid,payschedule,workedhrs,ot,basedrate,otbasedrate
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
@@ -173,6 +173,8 @@ public class Employee
         sqlcmd.Parameters.AddWithValue("@employeeid", this.employeeid);
         sqlcmd.Parameters.AddWithValue("@payschedule", this.payschedule);
         sqlcmd.Parameters.AddWithValue("@workedhrs", this.workedhrs);
+        sqlcmd.Parameters.AddWithValue("@basedrate", this.rate);
+        sqlcmd.Parameters.AddWithValue("@otbasedrate", this.otrate);
         sqlcmd.Parameters.AddWithValue("@ot", this.othrs);
         return dbutil.ExecuteNonQuery(sqlcmd);
     }

@@ -125,7 +125,8 @@ public partial class Payroll : System.Web.UI.Page
             GridViewRow row = gv_employees.Rows[rowIndex];
             string workedhrs = (row.FindControl("txtWorkedHrs") as TextBox).Text;
             string OTWorkedHrs = (row.FindControl("txtOTHrs") as TextBox).Text;
-
+            string rate = (row.FindControl("txtrate") as TextBox).Text;
+            string otrate = (row.FindControl("txtotrate") as TextBox).Text;
 
             string id = row.Cells[cID].Text.ToString();//transaction id
             string employeeid = row.Cells[cEmployeeId].Text.ToString();//transaction id
@@ -138,6 +139,9 @@ public partial class Payroll : System.Web.UI.Page
                 employeemodel.PaySchedule = payschedule;
                 employeemodel.WorkedHrs = Convert.ToDecimal((workedhrs == string.Empty ? "0" : workedhrs));
                 employeemodel.OTWorkedHrs = Convert.ToDecimal((OTWorkedHrs == string.Empty ? "0" : OTWorkedHrs));
+                employeemodel.Rate = Convert.ToDecimal((rate == string.Empty ? "0" : rate));
+                employeemodel.OTRate = Convert.ToDecimal((otrate == string.Empty ? "0" : otrate));
+
                 int affectedrecords = employeemodel.Access_PayrollTransaction(id);
                 if (affectedrecords > 0)
                 {

@@ -93,6 +93,9 @@
                     <td>PAID</td>
                     <td>
                         <asp:Label ID="LBLPAID" runat="server"></asp:Label></td>
+                    <td>PAYMENT METHOD</td>
+                    <td>
+                        <asp:Label ID="lblpaymentmethod" runat="server"></asp:Label></td>
                     
 
                 </tr>

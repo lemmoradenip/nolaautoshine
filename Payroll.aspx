@@ -57,7 +57,14 @@
                             <%--<asp:BoundField DataField="DepartmentName" HeaderText="DEPARTMENT" ItemStyle-Width="5%" HeaderStyle-Width="5%" />--%>
                             <asp:BoundField DataField="Emp_Job" HeaderText="JOB" ItemStyle-Width="10%" HeaderStyle-Width="10%" />
                             <asp:BoundField DataField="Paytype" HeaderText="TYPE" ItemStyle-Width="5%" HeaderStyle-Width="5%" />
-                            <asp:BoundField DataField="Rate" HeaderText="RATE" DataFormatString="{0:N}" ItemStyle-Width="10%" HeaderStyle-Width="10%" />
+                            <%--<asp:BoundField DataField="Rate" HeaderText="RATE" DataFormatString="{0:N}" ItemStyle-Width="10%" HeaderStyle-Width="10%" />--%>
+                              <asp:TemplateField HeaderText="Rate">
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txtrate" runat="server" BackColor="#234D6B" ForeColor="Yellow" BorderColor="Transparent" placeholder="0.00" Width="99%" Text='<%# Eval("rate") %>' Height="100%"></asp:TextBox>
+                                </ItemTemplate>
+                                <HeaderStyle Width="10%" />
+                                <ItemStyle HorizontalAlign="Center" Width="10%" />
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="WorkedHrs">
                                 <ItemTemplate>
                                     <asp:TextBox ID="txtWorkedHrs" runat="server" BackColor="#234D6B" ForeColor="Yellow" BorderColor="Transparent" placeholder="0.00" Width="99%" Text='<%# Eval("workedhrs") %>' Height="100%"></asp:TextBox>
@@ -66,7 +73,14 @@
                                 <ItemStyle HorizontalAlign="Center" Width="10%" />
                             </asp:TemplateField>
                             <%--<asp:BoundField DataField="totalregular" HeaderText="TOTAL" ItemStyle-Width="10%" HeaderStyle-Width="10%" />--%>
-                            <asp:BoundField DataField="OTRATE" HeaderText="OT-RATE" DataFormatString="{0:N}" ItemStyle-Width="10%" HeaderStyle-Width="10%" />
+                            <%--<asp:BoundField DataField="OTRATE" HeaderText="OT-RATE" DataFormatString="{0:N}" ItemStyle-Width="10%" HeaderStyle-Width="10%" />--%>
+                              <asp:TemplateField HeaderText="OT-RATE">
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txtotrate" runat="server" BackColor="#234D6B" ForeColor="Yellow" BorderColor="Transparent" placeholder="0.00" Width="99%" Text='<%# Eval("OTRATE") %>' Height="100%"></asp:TextBox>
+                                </ItemTemplate>
+                                <HeaderStyle Width="10%" />
+                                <ItemStyle HorizontalAlign="Center" Width="10%" />
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="OT-HRS">
                                 <ItemTemplate>
                                     <asp:TextBox ID="txtOTHrs" runat="server" BackColor="#234D6B" placeholder="0.00"   ForeColor="Yellow"  BorderColor="Transparent" Text='<%# Eval("OTHRS") %>' Width="99%" Height="99%"></asp:TextBox>
